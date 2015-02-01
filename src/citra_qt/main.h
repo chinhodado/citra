@@ -67,6 +67,7 @@ private slots:
     void OnMenuLoadFile();
     void OnMenuLoadSymbolMap();
     void OnOpenHotkeysDialog();
+    void OnOpenInputsDialog();
     void OnConfigure();
     void OnDisplayTitleBars(bool);
     void SetHardwareRendererEnabled(bool);

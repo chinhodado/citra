@@ -20,6 +20,8 @@ set(SRCS
             util/spinbox.cpp
             bootmanager.cpp
             hotkeys.cpp
+            inputs.cpp
+            KeyPressEater.cpp
             main.cpp
             citra-qt.rc
             )
@@ -44,6 +46,8 @@ set(HEADERS
             util/spinbox.h
             bootmanager.h
             hotkeys.h
+            inputs.h
+            KeyPressEater.h
             main.h
             version.h
             )
@@ -55,6 +59,7 @@ set(UIS
             debugger/profiler.ui
             debugger/registers.ui
             hotkeys.ui
+            inputs.ui
             main.ui
             )
 

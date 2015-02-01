@@ -22,6 +22,7 @@
 
 #include "bootmanager.h"
 #include "hotkeys.h"
+#include "inputs.h"
 
 //debugger
 #include "debugger/disassembler.h"
@@ -146,6 +147,8 @@ GMainWindow::GMainWindow() : emu_thread(nullptr)
     connect(ui.action_Use_Hardware_Renderer, SIGNAL(triggered(bool)), this, SLOT(SetHardwareRendererEnabled(bool)));
     connect(ui.action_Single_Window_Mode, SIGNAL(triggered(bool)), this, SLOT(ToggleWindowMode()));
     connect(ui.action_Hotkeys, SIGNAL(triggered()), this, SLOT(OnOpenHotkeysDialog()));
+    connect(ui.action_Inputs, SIGNAL(triggered()), this, SLOT(OnOpenInputsDialog()));
+
 
     connect(this, SIGNAL(EmulationStarting(EmuThread*)), disasmWidget, SLOT(OnEmulationStarting(EmuThread*)));
     connect(this, SIGNAL(EmulationStopping()), disasmWidget, SLOT(OnEmulationStopping()));
@@ -329,6 +332,11 @@ void GMainWindow::OnOpenHotkeysDialog()
 
 void GMainWindow::SetHardwareRendererEnabled(bool enabled) {
     VideoCore::g_hw_renderer_enabled = enabled;
+}
+
+void GMainWindow::OnOpenInputsDialog() {
+    GInputsDialog dialog(this);
+    dialog.exec();
 }
 
 void GMainWindow::ToggleWindowMode() {

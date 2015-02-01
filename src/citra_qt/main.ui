@@ -75,6 +75,7 @@
     <addaction name="action_Single_Window_Mode"/>
     <addaction name="actionDisplay_widget_title_bars"/>
     <addaction name="action_Hotkeys"/>
+    <addaction name="action_Inputs"/>
    </widget>
    <widget class="QMenu" name="menu_Help">
     <property name="title">
@@ -164,6 +165,14 @@
    </property>
    <property name="text">
     <string>Display Dock Widget Headers</string>
+   </property>
+  </action>
+  <action name="action_Inputs">
+   <property name="text">
+    <string>Configure &amp;Inputs</string>
+   </property>
+   <property name="toolTip">
+    <string>Configure Inputs</string>
    </property>
   </action>
  </widget>

@@ -76,23 +76,31 @@ GInputsDialog::GInputsDialog(QWidget* parent) : QDialog(parent) {
 }
 
 void GInputsDialog::displayButtonSettings(Settings::Values values) {
-    this->ui.lineEdit_A->setText(QKeySequence(values.pad_a_key).toString());
-    this->ui.lineEdit_B->setText(QKeySequence(values.pad_b_key).toString());
-    this->ui.lineEdit_X->setText(QKeySequence(values.pad_x_key).toString());
-    this->ui.lineEdit_Y->setText(QKeySequence(values.pad_y_key).toString());
-    this->ui.lineEdit_L->setText(QKeySequence(values.pad_l_key).toString());
-    this->ui.lineEdit_R->setText(QKeySequence(values.pad_r_key).toString());
-    this->ui.lineEdit_Start->setText(QKeySequence(values.pad_start_key).toString());
-    this->ui.lineEdit_Select->setText(QKeySequence(values.pad_select_key).toString());
-    this->ui.lineEdit_Home->setText(QKeySequence(values.pad_home_key).toString());
-    this->ui.lineEdit_dUp->setText(QKeySequence(values.pad_dup_key).toString());
-    this->ui.lineEdit_dDown->setText(QKeySequence(values.pad_ddown_key).toString());
-    this->ui.lineEdit_dLeft->setText(QKeySequence(values.pad_dleft_key).toString());
-    this->ui.lineEdit_dRight->setText(QKeySequence(values.pad_dright_key).toString());
-    this->ui.lineEdit_sUp->setText(QKeySequence(values.pad_sup_key).toString());
-    this->ui.lineEdit_sDown->setText(QKeySequence(values.pad_sdown_key).toString());
-    this->ui.lineEdit_sLeft->setText(QKeySequence(values.pad_sleft_key).toString());
-    this->ui.lineEdit_sRight->setText(QKeySequence(values.pad_sright_key).toString());
+    this->ui.lineEdit_A->setText(GInputsDialog::getKeyName(values.pad_a_key));
+    this->ui.lineEdit_B->setText(GInputsDialog::getKeyName(values.pad_b_key));
+    this->ui.lineEdit_X->setText(GInputsDialog::getKeyName(values.pad_x_key));
+    this->ui.lineEdit_Y->setText(GInputsDialog::getKeyName(values.pad_y_key));
+    this->ui.lineEdit_L->setText(GInputsDialog::getKeyName(values.pad_l_key));
+    this->ui.lineEdit_R->setText(GInputsDialog::getKeyName(values.pad_r_key));
+    this->ui.lineEdit_Start->setText(GInputsDialog::getKeyName(values.pad_start_key));
+    this->ui.lineEdit_Select->setText(GInputsDialog::getKeyName(values.pad_select_key));
+    this->ui.lineEdit_Home->setText(GInputsDialog::getKeyName(values.pad_home_key));
+    this->ui.lineEdit_dUp->setText(GInputsDialog::getKeyName(values.pad_dup_key));
+    this->ui.lineEdit_dDown->setText(GInputsDialog::getKeyName(values.pad_ddown_key));
+    this->ui.lineEdit_dLeft->setText(GInputsDialog::getKeyName(values.pad_dleft_key));
+    this->ui.lineEdit_dRight->setText(GInputsDialog::getKeyName(values.pad_dright_key));
+    this->ui.lineEdit_sUp->setText(GInputsDialog::getKeyName(values.pad_sup_key));
+    this->ui.lineEdit_sDown->setText(GInputsDialog::getKeyName(values.pad_sdown_key));
+    this->ui.lineEdit_sLeft->setText(GInputsDialog::getKeyName(values.pad_sleft_key));
+    this->ui.lineEdit_sRight->setText(GInputsDialog::getKeyName(values.pad_sright_key));
+}
+
+QString GInputsDialog::getKeyName(int key_code) {
+    if (key_code == Qt::Key_Shift) { return tr("Shift"); }
+    else if (key_code == Qt::Key_Control) { return tr("Ctrl"); }
+    else if (key_code == Qt::Key_Alt) { return tr("Alt"); }
+    else if (key_code == Qt::Key_Meta) { return tr("Meta"); }
+    else return QKeySequence(key_code).toString();
 }
 
 void GInputsDialog::OnResetClicked() {

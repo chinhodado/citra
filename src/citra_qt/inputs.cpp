@@ -12,8 +12,6 @@
 #include "inputs.h"
 #include "QLineEditKeyConfig.h"
 
-Settings::Values GInputsDialog::temp_settings;
-
 GInputsDialog::GInputsDialog(QWidget* parent) : QDialog(parent) {
     ui.setupUi(this);
 
@@ -44,7 +42,7 @@ GInputsDialog::GInputsDialog(QWidget* parent) : QDialog(parent) {
     connect(okButton, SIGNAL(clicked()), this, SLOT(OnOkClicked()));
 
     // create a copy of the current settings
-    GInputsDialog::temp_settings = Settings::Values(Settings::values);
+    this->temp_settings = Settings::Values(Settings::values);
 
     // display current key settings
     this->displayButtonSettings(Settings::values);
@@ -88,23 +86,23 @@ QString GInputsDialog::getKeyName(int key_code) {
 
 void GInputsDialog::OnDefaultClicked() {
     // load the default button settings into temp_settings
-    GInputsDialog::temp_settings.pad_a_key      = Qt::Key_A;
-    GInputsDialog::temp_settings.pad_b_key      = Qt::Key_S;
-    GInputsDialog::temp_settings.pad_x_key      = Qt::Key_Z;
-    GInputsDialog::temp_settings.pad_y_key      = Qt::Key_X;
-    GInputsDialog::temp_settings.pad_l_key      = Qt::Key_Q;
-    GInputsDialog::temp_settings.pad_r_key      = Qt::Key_W;
-    GInputsDialog::temp_settings.pad_start_key  = Qt::Key_M;
-    GInputsDialog::temp_settings.pad_select_key = Qt::Key_N;
-    GInputsDialog::temp_settings.pad_home_key   = Qt::Key_B;
-    GInputsDialog::temp_settings.pad_dup_key    = Qt::Key_T;
-    GInputsDialog::temp_settings.pad_ddown_key  = Qt::Key_G;
-    GInputsDialog::temp_settings.pad_dleft_key  = Qt::Key_F;
-    GInputsDialog::temp_settings.pad_dright_key = Qt::Key_H;
-    GInputsDialog::temp_settings.pad_sup_key    = Qt::Key_Up;
-    GInputsDialog::temp_settings.pad_sdown_key  = Qt::Key_Down;
-    GInputsDialog::temp_settings.pad_sleft_key  = Qt::Key_Left;
-    GInputsDialog::temp_settings.pad_sright_key = Qt::Key_Right;
+    this->temp_settings.pad_a_key      = Qt::Key_A;
+    this->temp_settings.pad_b_key      = Qt::Key_S;
+    this->temp_settings.pad_x_key      = Qt::Key_Z;
+    this->temp_settings.pad_y_key      = Qt::Key_X;
+    this->temp_settings.pad_l_key      = Qt::Key_Q;
+    this->temp_settings.pad_r_key      = Qt::Key_W;
+    this->temp_settings.pad_start_key  = Qt::Key_M;
+    this->temp_settings.pad_select_key = Qt::Key_N;
+    this->temp_settings.pad_home_key   = Qt::Key_B;
+    this->temp_settings.pad_dup_key    = Qt::Key_T;
+    this->temp_settings.pad_ddown_key  = Qt::Key_G;
+    this->temp_settings.pad_dleft_key  = Qt::Key_F;
+    this->temp_settings.pad_dright_key = Qt::Key_H;
+    this->temp_settings.pad_sup_key    = Qt::Key_Up;
+    this->temp_settings.pad_sdown_key  = Qt::Key_Down;
+    this->temp_settings.pad_sleft_key  = Qt::Key_Left;
+    this->temp_settings.pad_sright_key = Qt::Key_Right;
 
     // then display it
     this->displayButtonSettings(GInputsDialog::temp_settings);
@@ -114,23 +112,23 @@ void GInputsDialog::OnOkClicked() {
     Config config;
 
     // load the temporary settings into our real settings
-    Settings::values.pad_a_key      = GInputsDialog::temp_settings.pad_a_key;
-    Settings::values.pad_b_key      = GInputsDialog::temp_settings.pad_b_key;
-    Settings::values.pad_x_key      = GInputsDialog::temp_settings.pad_x_key;
-    Settings::values.pad_y_key      = GInputsDialog::temp_settings.pad_y_key;
-    Settings::values.pad_l_key      = GInputsDialog::temp_settings.pad_l_key;
-    Settings::values.pad_r_key      = GInputsDialog::temp_settings.pad_r_key;
-    Settings::values.pad_start_key  = GInputsDialog::temp_settings.pad_start_key;
-    Settings::values.pad_select_key = GInputsDialog::temp_settings.pad_select_key;
-    Settings::values.pad_home_key   = GInputsDialog::temp_settings.pad_home_key;
-    Settings::values.pad_dup_key    = GInputsDialog::temp_settings.pad_dup_key;
-    Settings::values.pad_ddown_key  = GInputsDialog::temp_settings.pad_ddown_key;
-    Settings::values.pad_dleft_key  = GInputsDialog::temp_settings.pad_dleft_key;
-    Settings::values.pad_dright_key = GInputsDialog::temp_settings.pad_dright_key;
-    Settings::values.pad_sup_key    = GInputsDialog::temp_settings.pad_sup_key;
-    Settings::values.pad_sdown_key  = GInputsDialog::temp_settings.pad_sdown_key;
-    Settings::values.pad_sleft_key  = GInputsDialog::temp_settings.pad_sleft_key;
-    Settings::values.pad_sright_key = GInputsDialog::temp_settings.pad_sright_key;
+    Settings::values.pad_a_key      = this->temp_settings.pad_a_key;
+    Settings::values.pad_b_key      = this->temp_settings.pad_b_key;
+    Settings::values.pad_x_key      = this->temp_settings.pad_x_key;
+    Settings::values.pad_y_key      = this->temp_settings.pad_y_key;
+    Settings::values.pad_l_key      = this->temp_settings.pad_l_key;
+    Settings::values.pad_r_key      = this->temp_settings.pad_r_key;
+    Settings::values.pad_start_key  = this->temp_settings.pad_start_key;
+    Settings::values.pad_select_key = this->temp_settings.pad_select_key;
+    Settings::values.pad_home_key   = this->temp_settings.pad_home_key;
+    Settings::values.pad_dup_key    = this->temp_settings.pad_dup_key;
+    Settings::values.pad_ddown_key  = this->temp_settings.pad_ddown_key;
+    Settings::values.pad_dleft_key  = this->temp_settings.pad_dleft_key;
+    Settings::values.pad_dright_key = this->temp_settings.pad_dright_key;
+    Settings::values.pad_sup_key    = this->temp_settings.pad_sup_key;
+    Settings::values.pad_sdown_key  = this->temp_settings.pad_sdown_key;
+    Settings::values.pad_sleft_key  = this->temp_settings.pad_sleft_key;
+    Settings::values.pad_sright_key = this->temp_settings.pad_sright_key;
 
     // then save it
     config.Save();

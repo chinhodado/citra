@@ -17,7 +17,7 @@ public:
     GInputsDialog(QWidget* parent = nullptr);
 
     /// Temporary settings used when configuration is changed but not saved yet
-    static Settings::Values temp_settings;
+    Settings::Values temp_settings;
 
     /// Given a key code, return the key name. Needed for modifier keys
     static QString getKeyName(int key_code);

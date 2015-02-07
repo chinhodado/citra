@@ -21,7 +21,7 @@ set(SRCS
             debugger/registers.cpp
             util/spinbox.cpp
             bootmanager.cpp
-            hotkeys.cpp            
+            hotkeys.cpp
             main.cpp
             citra-qt.rc
             )
@@ -47,7 +47,7 @@ set(HEADERS
             debugger/registers.h
             util/spinbox.h
             bootmanager.h
-            hotkeys.h            
+            hotkeys.h
             main.h
             version.h
             )
@@ -59,7 +59,7 @@ set(UIS
             debugger/disassembler.ui
             debugger/profiler.ui
             debugger/registers.ui
-            hotkeys.ui            
+            hotkeys.ui
             main.ui
             )
 

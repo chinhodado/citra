@@ -29,6 +29,6 @@ private:
     void displayButtonSettings(const Settings::Values& values);
 
 private slots:
-    void OnDefaultClicked();
-    void OnOkClicked();
+    void SaveSettings();
+    void RestoreDefaultSettings();
 };

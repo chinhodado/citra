@@ -2,7 +2,7 @@
 // Licensed under GPLv2 or any later version
 // Refer to the license.txt file included.
 
-#include "common/log.h"
+#include "common/logging/log.h"
 
 #include <QKeySequence>
 #include <QSettings>
@@ -36,10 +36,10 @@ GInputsDialog::GInputsDialog(QWidget* parent) : QDialog(parent) {
 
     // set up event handlers for the buttons
     QPushButton* defaultButton = this->ui.buttonBox->button(QDialogButtonBox::RestoreDefaults);
-    connect(defaultButton, SIGNAL(clicked()), this, SLOT(OnDefaultClicked()));
+    connect(defaultButton, SIGNAL(clicked()), this, SLOT(RestoreDefaultSettings()));
 
     QPushButton* okButton = this->ui.buttonBox->button(QDialogButtonBox::Ok);
-    connect(okButton, SIGNAL(clicked()), this, SLOT(OnOkClicked()));
+    connect(okButton, SIGNAL(clicked()), this, SLOT(SaveSettings()));
 
     // create a copy of the current settings
     this->temp_settings = Settings::Values(Settings::values);
@@ -84,7 +84,7 @@ QString GInputsDialog::getKeyName(int key_code) {
     return QKeySequence(key_code).toString();
 }
 
-void GInputsDialog::OnDefaultClicked() {
+void GInputsDialog::RestoreDefaultSettings() {
     // load the default button settings into temp_settings
     this->temp_settings.pad_a_key      = Qt::Key_A;
     this->temp_settings.pad_b_key      = Qt::Key_S;
@@ -108,7 +108,7 @@ void GInputsDialog::OnDefaultClicked() {
     this->displayButtonSettings(GInputsDialog::temp_settings);
 }
 
-void GInputsDialog::OnOkClicked() {
+void GInputsDialog::SaveSettings() {
     Config config;
 
     // load the temporary settings into our real settings

@@ -6,7 +6,7 @@
 
 #include <QDialog>
 
-#include "core/settings.h"
+#include "../core/settings.h"
 #include "ui_inputs.h"
 
 /// The input configuration dialog

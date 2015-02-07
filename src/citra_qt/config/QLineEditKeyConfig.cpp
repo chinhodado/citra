@@ -2,8 +2,8 @@
 // Licensed under GPLv2 or any later version
 // Refer to the license.txt file included.
 
-#include <QLineEditKeyConfig.h>
-#include <inputs.h>
+#include "QLineEditKeyConfig.h"
+#include "inputs.h"
 #include <QKeyEvent>
 #include <QLineEdit>
 

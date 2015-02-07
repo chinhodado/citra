@@ -22,7 +22,7 @@
 
 #include "bootmanager.h"
 #include "hotkeys.h"
-#include "inputs.h"
+#include "config/inputs.h"
 
 //debugger
 #include "debugger/disassembler.h"

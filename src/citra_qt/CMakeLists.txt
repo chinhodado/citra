@@ -2,6 +2,8 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 set(SRCS
+            config/inputs.cpp
+            config/QLineEditKeyConfig.cpp
             config/controller_config.cpp
             config/controller_config_util.cpp
             config.cpp
@@ -19,14 +21,14 @@ set(SRCS
             debugger/registers.cpp
             util/spinbox.cpp
             bootmanager.cpp
-            hotkeys.cpp
-            inputs.cpp
-            QLineEditKeyConfig.cpp
+            hotkeys.cpp            
             main.cpp
             citra-qt.rc
             )
 
 set(HEADERS
+            config/inputs.h
+            config/QLineEditKeyConfig.h
             config/controller_config.h
             config/controller_config_util.h
             config.h
@@ -45,21 +47,19 @@ set(HEADERS
             debugger/registers.h
             util/spinbox.h
             bootmanager.h
-            hotkeys.h
-            inputs.h
-            QLineEditKeyConfig.h
+            hotkeys.h            
             main.h
             version.h
             )
 
 set(UIS
             config/controller_config.ui
+            config/inputs.ui
             debugger/callstack.ui
             debugger/disassembler.ui
             debugger/profiler.ui
             debugger/registers.ui
-            hotkeys.ui
-            inputs.ui
+            hotkeys.ui            
             main.ui
             )
 

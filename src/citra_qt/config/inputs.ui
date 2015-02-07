@@ -544,7 +544,7 @@
   <customwidget>
    <class>QLineEditKeyConfig</class>
    <extends>QLineEdit</extends>
-   <header>QLineEditKeyConfig.h</header>
+   <header>config/QLineEditKeyConfig.h</header>
   </customwidget>
  </customwidgets>
  <resources/>

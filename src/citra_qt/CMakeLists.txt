@@ -21,7 +21,7 @@ set(SRCS
             bootmanager.cpp
             hotkeys.cpp
             inputs.cpp
-            KeyPressEater.cpp
+            QLineEditKeyConfig.cpp
             main.cpp
             citra-qt.rc
             )
@@ -47,7 +47,7 @@ set(HEADERS
             bootmanager.h
             hotkeys.h
             inputs.h
-            KeyPressEater.h
+            QLineEditKeyConfig.h
             main.h
             version.h
             )

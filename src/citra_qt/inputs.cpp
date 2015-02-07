@@ -2,50 +2,45 @@
 // Licensed under GPLv2 or any later version
 // Refer to the license.txt file included.
 
-#include <QKeySequence>
-#include <QSettings>
-#include <QtWidgets>
-#include "inputs.h"
-#include "KeyPressEater.h"
-#include "config.h"
 #include "common/log.h"
 
-std::map<QString, Button> GInputsDialog::edit_input_map;
-bool GInputsDialog::edit_input_map_initialized = false;
+#include <QKeySequence>
+#include <QSettings>
+#include <QPushButton>
+
+#include "config.h"
+#include "inputs.h"
+#include "QLineEditKeyConfig.h"
+
 Settings::Values GInputsDialog::temp_settings;
 
 GInputsDialog::GInputsDialog(QWidget* parent) : QDialog(parent) {
     ui.setupUi(this);
 
-    // initialize the edit_input_map
-    if (!edit_input_map_initialized) {
-        GInputsDialog::edit_input_map = std::map<QString, Button> {
-            { this->ui.lineEdit_A->objectName(), Button::A},
-            { this->ui.lineEdit_B->objectName(), Button::B },
-            { this->ui.lineEdit_X->objectName(), Button::X },
-            { this->ui.lineEdit_Y->objectName(), Button::Y },
-            { this->ui.lineEdit_L->objectName(), Button::L },
-            { this->ui.lineEdit_R->objectName(), Button::R },
-            { this->ui.lineEdit_Start->objectName(), Button::Start },
-            { this->ui.lineEdit_Select->objectName(), Button::Select },
-            { this->ui.lineEdit_Home->objectName(), Button::Home },
-            { this->ui.lineEdit_dUp->objectName(), Button::DUp },
-            { this->ui.lineEdit_dDown->objectName(), Button::DDown },
-            { this->ui.lineEdit_dLeft->objectName(), Button::DLeft },
-            { this->ui.lineEdit_dRight->objectName(), Button::DRight },
-            { this->ui.lineEdit_sUp->objectName(), Button::SUp },
-            { this->ui.lineEdit_sDown->objectName(), Button::SDown },
-            { this->ui.lineEdit_sLeft->objectName(), Button::SLeft },
-            { this->ui.lineEdit_sRight->objectName(), Button::SRight },
-        };
-        edit_input_map_initialized = true;
-    }
+    // setup the LineEdits
+    this->ui.lineEdit_A->button = Button::A;
+    this->ui.lineEdit_B->button = Button::B;
+    this->ui.lineEdit_X->button = Button::X;
+    this->ui.lineEdit_Y->button = Button::Y;
+    this->ui.lineEdit_L->button = Button::L;
+    this->ui.lineEdit_R->button = Button::R;
+    this->ui.lineEdit_Start->button = Button::Start;
+    this->ui.lineEdit_Select->button = Button::Select;
+    this->ui.lineEdit_Home->button = Button::Home;
+    this->ui.lineEdit_dUp->button = Button::DUp;
+    this->ui.lineEdit_dDown->button = Button::DDown;
+    this->ui.lineEdit_dLeft->button = Button::DLeft;
+    this->ui.lineEdit_dRight->button = Button::DRight;
+    this->ui.lineEdit_sUp->button = Button::SUp;
+    this->ui.lineEdit_sDown->button = Button::SDown;
+    this->ui.lineEdit_sLeft->button = Button::SLeft;
+    this->ui.lineEdit_sRight->button = Button::SRight;
 
     // set up event handlers for the buttons
-    QPushButton *resetButton = this->ui.buttonBox->button(QDialogButtonBox::Reset);
-    connect(resetButton, SIGNAL(clicked()), this, SLOT(OnResetClicked()));
+    QPushButton* defaultButton = this->ui.buttonBox->button(QDialogButtonBox::RestoreDefaults);
+    connect(defaultButton, SIGNAL(clicked()), this, SLOT(OnDefaultClicked()));
 
-    QPushButton *okButton = this->ui.buttonBox->button(QDialogButtonBox::Ok);
+    QPushButton* okButton = this->ui.buttonBox->button(QDialogButtonBox::Ok);
     connect(okButton, SIGNAL(clicked()), this, SLOT(OnOkClicked()));
 
     // create a copy of the current settings
@@ -53,29 +48,9 @@ GInputsDialog::GInputsDialog(QWidget* parent) : QDialog(parent) {
 
     // display current key settings
     this->displayButtonSettings(Settings::values);
-
-    // setup event filters for the LineEdits
-    KeyPressEater* keyPressEater = new KeyPressEater(this);
-    this->ui.lineEdit_A->installEventFilter(keyPressEater);
-    this->ui.lineEdit_B->installEventFilter(keyPressEater);
-    this->ui.lineEdit_X->installEventFilter(keyPressEater);
-    this->ui.lineEdit_Y->installEventFilter(keyPressEater);
-    this->ui.lineEdit_L->installEventFilter(keyPressEater);
-    this->ui.lineEdit_R->installEventFilter(keyPressEater);
-    this->ui.lineEdit_Start->installEventFilter(keyPressEater);
-    this->ui.lineEdit_Select->installEventFilter(keyPressEater);
-    this->ui.lineEdit_Home->installEventFilter(keyPressEater);
-    this->ui.lineEdit_dUp->installEventFilter(keyPressEater);
-    this->ui.lineEdit_dDown->installEventFilter(keyPressEater);
-    this->ui.lineEdit_dLeft->installEventFilter(keyPressEater);
-    this->ui.lineEdit_dRight->installEventFilter(keyPressEater);
-    this->ui.lineEdit_sUp->installEventFilter(keyPressEater);
-    this->ui.lineEdit_sDown->installEventFilter(keyPressEater);
-    this->ui.lineEdit_sLeft->installEventFilter(keyPressEater);
-    this->ui.lineEdit_sRight->installEventFilter(keyPressEater);
 }
 
-void GInputsDialog::displayButtonSettings(Settings::Values values) {
+void GInputsDialog::displayButtonSettings(const Settings::Values& values) {
     this->ui.lineEdit_A->setText(GInputsDialog::getKeyName(values.pad_a_key));
     this->ui.lineEdit_B->setText(GInputsDialog::getKeyName(values.pad_b_key));
     this->ui.lineEdit_X->setText(GInputsDialog::getKeyName(values.pad_x_key));
@@ -96,14 +71,22 @@ void GInputsDialog::displayButtonSettings(Settings::Values values) {
 }
 
 QString GInputsDialog::getKeyName(int key_code) {
-    if (key_code == Qt::Key_Shift) { return tr("Shift"); }
-    else if (key_code == Qt::Key_Control) { return tr("Ctrl"); }
-    else if (key_code == Qt::Key_Alt) { return tr("Alt"); }
-    else if (key_code == Qt::Key_Meta) { return tr("Meta"); }
-    else return QKeySequence(key_code).toString();
+    if (key_code == Qt::Key_Shift)
+        return tr("Shift");
+
+    if (key_code == Qt::Key_Control)
+        return tr("Ctrl");
+
+    if (key_code == Qt::Key_Alt)
+        return tr("Alt");
+
+    if (key_code == Qt::Key_Meta)
+        return tr("Meta");
+
+    return QKeySequence(key_code).toString();
 }
 
-void GInputsDialog::OnResetClicked() {
+void GInputsDialog::OnDefaultClicked() {
     // load the default button settings into temp_settings
     GInputsDialog::temp_settings.pad_a_key      = Qt::Key_A;
     GInputsDialog::temp_settings.pad_b_key      = Qt::Key_S;

@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Input setting</string>
+   <string>Input Settings</string>
   </property>
   <widget class="QDialogButtonBox" name="buttonBox">
    <property name="geometry">
@@ -26,7 +26,7 @@
     <enum>Qt::Horizontal</enum>
    </property>
    <property name="standardButtons">
-    <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok|QDialogButtonBox::Reset</set>
+    <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok|QDialogButtonBox::RestoreDefaults</set>
    </property>
   </widget>
   <widget class="QGroupBox" name="groupBox">
@@ -39,9 +39,9 @@
     </rect>
    </property>
    <property name="title">
-    <string>C-Pad</string>
+    <string>Circle Pad</string>
    </property>
-   <widget class="QLineEdit" name="lineEdit_sRight">
+   <widget class="QLineEditKeyConfig" name="lineEdit_sRight">
     <property name="geometry">
      <rect>
       <x>160</x>
@@ -67,7 +67,7 @@
      <string>Left</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_sDown">
+   <widget class="QLineEditKeyConfig" name="lineEdit_sDown">
     <property name="geometry">
      <rect>
       <x>110</x>
@@ -80,7 +80,7 @@
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_sLeft">
+   <widget class="QLineEditKeyConfig" name="lineEdit_sLeft">
     <property name="geometry">
      <rect>
       <x>40</x>
@@ -119,7 +119,7 @@
      <string>Right</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_sUp">
+   <widget class="QLineEditKeyConfig" name="lineEdit_sUp">
     <property name="geometry">
      <rect>
       <x>110</x>
@@ -158,7 +158,7 @@
    <property name="title">
     <string>D-Pad</string>
    </property>
-   <widget class="QLineEdit" name="lineEdit_dDown">
+   <widget class="QLineEditKeyConfig" name="lineEdit_dDown">
     <property name="geometry">
      <rect>
       <x>110</x>
@@ -171,7 +171,7 @@
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_dLeft">
+   <widget class="QLineEditKeyConfig" name="lineEdit_dLeft">
     <property name="geometry">
      <rect>
       <x>40</x>
@@ -197,7 +197,7 @@
      <string>Up</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_dRight">
+   <widget class="QLineEditKeyConfig" name="lineEdit_dRight">
     <property name="geometry">
      <rect>
       <x>160</x>
@@ -226,7 +226,7 @@
      <string>Down</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_dUp">
+   <widget class="QLineEditKeyConfig" name="lineEdit_dUp">
     <property name="geometry">
      <rect>
       <x>110</x>
@@ -276,9 +276,9 @@
     </rect>
    </property>
    <property name="title">
-    <string>Main</string>
+    <string>Main Buttons</string>
    </property>
-   <widget class="QLineEdit" name="lineEdit_B">
+   <widget class="QLineEditKeyConfig" name="lineEdit_B">
     <property name="geometry">
      <rect>
       <x>90</x>
@@ -291,7 +291,7 @@
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_Y">
+   <widget class="QLineEditKeyConfig" name="lineEdit_Y">
     <property name="geometry">
      <rect>
       <x>20</x>
@@ -317,7 +317,7 @@
      <string>Y</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_A">
+   <widget class="QLineEditKeyConfig" name="lineEdit_A">
     <property name="geometry">
      <rect>
       <x>140</x>
@@ -369,7 +369,7 @@
      <string>A</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_X">
+   <widget class="QLineEditKeyConfig" name="lineEdit_X">
     <property name="geometry">
      <rect>
       <x>90</x>
@@ -382,22 +382,6 @@
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <zorder>lineEdit_B</zorder>
-   <zorder>label_Y</zorder>
-   <zorder>lineEdit_Y</zorder>
-   <zorder>lineEdit_A</zorder>
-   <zorder>label_X</zorder>
-   <zorder>label_B</zorder>
-   <zorder>label_A</zorder>
-   <zorder>lineEdit_X</zorder>
-   <zorder>lineEdit_B</zorder>
-   <zorder>lineEdit_Y</zorder>
-   <zorder>label_Y</zorder>
-   <zorder>lineEdit_A</zorder>
-   <zorder>label_B</zorder>
-   <zorder>label_X</zorder>
-   <zorder>label_A</zorder>
-   <zorder>lineEdit_X</zorder>
   </widget>
   <widget class="QGroupBox" name="groupBox_4">
    <property name="geometry">
@@ -409,9 +393,9 @@
     </rect>
    </property>
    <property name="title">
-    <string>Others</string>
+    <string>Other Buttons</string>
    </property>
-   <widget class="QLineEdit" name="lineEdit_Start">
+   <widget class="QLineEditKeyConfig" name="lineEdit_Start">
     <property name="geometry">
      <rect>
       <x>360</x>
@@ -450,7 +434,7 @@
      <string>Select</string>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_Select">
+   <widget class="QLineEditKeyConfig" name="lineEdit_Select">
     <property name="geometry">
      <rect>
       <x>90</x>
@@ -463,7 +447,7 @@
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_Home">
+   <widget class="QLineEditKeyConfig" name="lineEdit_Home">
     <property name="geometry">
      <rect>
       <x>230</x>
@@ -500,9 +484,9 @@
     </rect>
    </property>
    <property name="title">
-    <string>Shoulder</string>
+    <string>Bumpers</string>
    </property>
-   <widget class="QLineEdit" name="lineEdit_R">
+   <widget class="QLineEditKeyConfig" name="lineEdit_R">
     <property name="geometry">
      <rect>
       <x>340</x>
@@ -515,7 +499,7 @@
      <set>Qt::AlignCenter</set>
     </property>
    </widget>
-   <widget class="QLineEdit" name="lineEdit_L">
+   <widget class="QLineEditKeyConfig" name="lineEdit_L">
     <property name="geometry">
      <rect>
       <x>110</x>
@@ -556,6 +540,13 @@
    </widget>
   </widget>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QLineEditKeyConfig</class>
+   <extends>QLineEdit</extends>
+   <header>QLineEditKeyConfig.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections>
   <connection>

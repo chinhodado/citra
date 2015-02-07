@@ -171,9 +171,6 @@
    <property name="text">
     <string>Configure &amp;Inputs</string>
    </property>
-   <property name="toolTip">
-    <string>Configure Inputs</string>
-   </property>
   </action>
  </widget>
  <resources/>

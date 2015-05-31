@@ -159,17 +159,17 @@
     <string>Configure ...</string>
    </property>
   </action>
+  <action name="action_Inputs">
+   <property name="text">
+    <string>Configure &amp;Controls</string>
+   </property>
+  </action>
   <action name="actionDisplay_widget_title_bars">
    <property name="checkable">
     <bool>true</bool>
    </property>
    <property name="text">
     <string>Display Dock Widget Headers</string>
-   </property>
-  </action>
-  <action name="action_Inputs">
-   <property name="text">
-    <string>Configure &amp;Inputs</string>
    </property>
   </action>
  </widget>

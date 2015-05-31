@@ -27,10 +27,10 @@ set(SRCS
             )
 
 set(HEADERS
-            config/inputs.h
-            config/QLineEditKeyConfig.h
             config/controller_config.h
             config/controller_config_util.h
+            config/inputs.h
+            config/QLineEditKeyConfig.h
             config.h
             debugger/callstack.h
             debugger/disassembler.h
@@ -54,7 +54,6 @@ set(HEADERS
 
 set(UIS
             config/controller_config.ui
-            config/inputs.ui
             debugger/callstack.ui
             debugger/disassembler.ui
             debugger/profiler.ui

@@ -2,8 +2,6 @@
 // Licensed under GPLv2 or any later version
 // Refer to the license.txt file included.
 
-#include "common/logging/log.h"
-
 #include <QKeySequence>
 #include <QSettings>
 #include <QPushButton>
@@ -11,6 +9,7 @@
 #include <QGridLayout>
 #include <QDialogButtonBox>
 
+#include "common/logging/log.h"
 #include "config.h"
 #include "inputs.h"
 
@@ -19,29 +18,29 @@ GInputsDialog::GInputsDialog(QWidget* parent) : QDialog(parent) {
     temp_settings = Settings::Values(Settings::values);
 
     // create the lineEdits
-    lineEdit_A = new QLineEditKeyConfig(temp_settings, Button::A);
-    lineEdit_B = new QLineEditKeyConfig(temp_settings, Button::B);
-    lineEdit_X = new QLineEditKeyConfig(temp_settings, Button::X);
-    lineEdit_Y = new QLineEditKeyConfig(temp_settings, Button::Y);
-    lineEdit_L = new QLineEditKeyConfig(temp_settings, Button::L);
-    lineEdit_R = new QLineEditKeyConfig(temp_settings, Button::R);
-    lineEdit_ZL = new QLineEditKeyConfig(temp_settings, Button::ZL);
-    lineEdit_ZR = new QLineEditKeyConfig(temp_settings, Button::ZR);
-    lineEdit_dUp = new QLineEditKeyConfig(temp_settings, Button::DUp);
-    lineEdit_dDown = new QLineEditKeyConfig(temp_settings, Button::DDown);
-    lineEdit_dLeft = new QLineEditKeyConfig(temp_settings, Button::DLeft);
-    lineEdit_dRight = new QLineEditKeyConfig(temp_settings, Button::DRight);
-    lineEdit_sUp = new QLineEditKeyConfig(temp_settings, Button::SUp);
-    lineEdit_sDown = new QLineEditKeyConfig(temp_settings, Button::SDown);
-    lineEdit_sLeft = new QLineEditKeyConfig(temp_settings, Button::SLeft);
-    lineEdit_sRight = new QLineEditKeyConfig(temp_settings, Button::SRight);
-    lineEdit_cUp = new QLineEditKeyConfig(temp_settings, Button::CUp);
-    lineEdit_cDown = new QLineEditKeyConfig(temp_settings, Button::CDown);
-    lineEdit_cLeft = new QLineEditKeyConfig(temp_settings, Button::CLeft);
-    lineEdit_cRight = new QLineEditKeyConfig(temp_settings, Button::CRight);
-    lineEdit_Home = new QLineEditKeyConfig(temp_settings, Button::Home);
-    lineEdit_Start = new QLineEditKeyConfig(temp_settings, Button::Start);
-    lineEdit_Select = new QLineEditKeyConfig(temp_settings, Button::Select);
+    lineEdit_A = new QLineEditKeyConfig(Button::A);
+    lineEdit_B = new QLineEditKeyConfig(Button::B);
+    lineEdit_X = new QLineEditKeyConfig(Button::X);
+    lineEdit_Y = new QLineEditKeyConfig(Button::Y);
+    lineEdit_L = new QLineEditKeyConfig(Button::L);
+    lineEdit_R = new QLineEditKeyConfig(Button::R);
+    lineEdit_ZL = new QLineEditKeyConfig(Button::ZL);
+    lineEdit_ZR = new QLineEditKeyConfig(Button::ZR);
+    lineEdit_dUp = new QLineEditKeyConfig(Button::DUp);
+    lineEdit_dDown = new QLineEditKeyConfig(Button::DDown);
+    lineEdit_dLeft = new QLineEditKeyConfig(Button::DLeft);
+    lineEdit_dRight = new QLineEditKeyConfig(Button::DRight);
+    lineEdit_sUp = new QLineEditKeyConfig(Button::SUp);
+    lineEdit_sDown = new QLineEditKeyConfig(Button::SDown);
+    lineEdit_sLeft = new QLineEditKeyConfig(Button::SLeft);
+    lineEdit_sRight = new QLineEditKeyConfig(Button::SRight);
+    lineEdit_cUp = new QLineEditKeyConfig(Button::CUp);
+    lineEdit_cDown = new QLineEditKeyConfig(Button::CDown);
+    lineEdit_cLeft = new QLineEditKeyConfig(Button::CLeft);
+    lineEdit_cRight = new QLineEditKeyConfig(Button::CRight);
+    lineEdit_Home = new QLineEditKeyConfig(Button::Home);
+    lineEdit_Start = new QLineEditKeyConfig(Button::Start);
+    lineEdit_Select = new QLineEditKeyConfig(Button::Select);
 
     lineEdits = {{
         lineEdit_A, lineEdit_B, lineEdit_X, lineEdit_Y, lineEdit_L, lineEdit_R, lineEdit_ZL, lineEdit_ZR,
@@ -59,9 +58,11 @@ GInputsDialog::GInputsDialog(QWidget* parent) : QDialog(parent) {
         int row = i % numRow;
         int labelColumn = i / numRow * 2;
         QLineEditKeyConfig *lineEdit = lineEdits[i];
-        QLabel *label = new QLabel(QString::fromStdString(ButtonNameMap[lineEdit->button]));
+        QLabel *label = new QLabel(tr(ButtonNameMap[lineEdit->button].c_str()));
         grid->addWidget(label, row, labelColumn);
         grid->addWidget(lineEdit, row, labelColumn + 1);
+
+        QObject::connect(lineEdit, SIGNAL(ValueChanged(Button, int)), this, SLOT(UpdateValue(Button, int)));
     }
 
     // the button box that contains the restore default/ok/cancel buttons
@@ -89,6 +90,82 @@ GInputsDialog::GInputsDialog(QWidget* parent) : QDialog(parent) {
 
     // display current key settings
     UpdateKeyLabels();
+}
+
+void GInputsDialog::UpdateValue(Button button, int key) {
+    switch (button) {
+    case Button::A:
+        temp_settings.pad_a_key = key;
+        break;
+    case Button::B:
+        temp_settings.pad_b_key = key;
+        break;
+    case Button::X:
+        temp_settings.pad_x_key = key;
+        break;
+    case Button::Y:
+        temp_settings.pad_y_key = key;
+        break;
+    case Button::L:
+        temp_settings.pad_l_key = key;
+        break;
+    case Button::R:
+        temp_settings.pad_r_key = key;
+        break;
+    case Button::ZL:
+        temp_settings.pad_zl_key = key;
+        break;
+    case Button::ZR:
+        temp_settings.pad_zr_key = key;
+        break;
+    case Button::DUp:
+        temp_settings.pad_dup_key = key;
+        break;
+    case Button::DDown:
+        temp_settings.pad_ddown_key = key;
+        break;
+    case Button::DLeft:
+        temp_settings.pad_dleft_key = key;
+        break;
+    case Button::DRight:
+        temp_settings.pad_dright_key = key;
+        break;
+    case Button::SUp:
+        temp_settings.pad_sup_key = key;
+        break;
+    case Button::SDown:
+        temp_settings.pad_sdown_key = key;
+        break;
+    case Button::SLeft:
+        temp_settings.pad_sleft_key = key;
+        break;
+    case Button::SRight:
+        temp_settings.pad_sright_key = key;
+        break;
+    case Button::CUp:
+        temp_settings.pad_cup_key = key;
+        break;
+    case Button::CDown:
+        temp_settings.pad_cdown_key = key;
+        break;
+    case Button::CLeft:
+        temp_settings.pad_cleft_key = key;
+        break;
+    case Button::CRight:
+        temp_settings.pad_cright_key = key;
+        break;
+    case Button::Home:
+        temp_settings.pad_home_key = key;
+        break;
+    case Button::Start:
+        temp_settings.pad_start_key = key;
+        break;
+    case Button::Select:
+        temp_settings.pad_select_key = key;
+        break;
+    default:
+        break;
+    }
 }
 
 void GInputsDialog::UpdateKeyLabels() {

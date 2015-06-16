@@ -4,9 +4,9 @@
 
 #pragma once
 
-#include <QLineEdit>
 #include <map>
-#include "../core/settings.h"
+
+#include <QLineEdit>
 
 class QKeyEvent;
 
@@ -28,9 +28,9 @@ class QLineEditKeyConfig : public QLineEdit {
 
 public:
     Button button;
-    QLineEditKeyConfig(Settings::Values& temp_settings, Button button, QWidget* parent = nullptr);
+    QLineEditKeyConfig(Button button, QWidget* parent = nullptr);
     void keyPressEvent(QKeyEvent* event) override;
 
-private:
-    Settings::Values& temp_settings;
+signals:
+    void ValueChanged(Button, int);
 };

@@ -58,4 +58,5 @@ private:
 private slots:
     void SaveSettings();
     void RestoreDefaultSettings();
+    void UpdateValue(Button button, int key);
 };

@@ -6,6 +6,15 @@
 
 #include <string>
 
+enum Button {
+    A, B, X, Y, L, R, ZL, ZR,
+    DUp, DDown, DLeft, DRight,
+    SUp, SDown, SLeft, SRight,
+    CUp, CDown, CLeft, CRight,
+    Start, Select, Home,
+    NUM_BUTTONS
+};
+
 namespace Settings {
 
 struct Values {
@@ -33,6 +42,7 @@ struct Values {
     int pad_cdown_key;
     int pad_cleft_key;
     int pad_cright_key;
+    int input_mappings[Button::NUM_BUTTONS];
 
     // Core
     int frame_skip;

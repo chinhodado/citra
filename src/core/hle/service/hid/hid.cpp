@@ -18,7 +18,6 @@
 
 namespace Service {
 namespace HID {
-
 static const int MAX_CIRCLEPAD_POS = 0x9C; ///< Max value for a circle pad position
 
 // Handle to shared memory region designated to HID_User service
@@ -33,6 +32,14 @@ static Kernel::SharedPtr<Kernel::Event> event_debug_pad;
 
 static u32 next_pad_index;
 static u32 next_touch_index;
+
+PadState pad_state_array[23] = {
+    PAD_A, PAD_B, PAD_X, PAD_Y, PAD_L, PAD_R, PAD_ZL, PAD_ZR,
+    PAD_UP, PAD_DOWN, PAD_LEFT, PAD_RIGHT,
+    PAD_CIRCLE_UP, PAD_CIRCLE_DOWN, PAD_CIRCLE_LEFT, PAD_CIRCLE_RIGHT,
+    PAD_C_UP, PAD_C_DOWN, PAD_C_LEFT, PAD_C_RIGHT,
+    PAD_START, PAD_SELECT
+};
 
 // TODO(peachum):
 // Add a method for setting analog input from joystick device for the circle Pad.
@@ -206,7 +213,5 @@ void Shutdown() {
     event_gyroscope = nullptr;
     event_debug_pad = nullptr;
 }
-
 } // namespace HID
-
 } // namespace Service

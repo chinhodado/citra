@@ -91,7 +91,6 @@ private:
 
 GRenderWindow::GRenderWindow(QWidget* parent, EmuThread* emu_thread) :
     QWidget(parent), emu_thread(emu_thread), keyboard_id(0) {
-
     std::string window_title = Common::StringFromFormat("Citra | %s-%s", Common::g_scm_branch, Common::g_scm_desc);
     setWindowTitle(QString::fromStdString(window_title));
 
@@ -244,7 +243,7 @@ void GRenderWindow::mouseReleaseEvent(QMouseEvent *event)
 
 void GRenderWindow::ReloadSetKeymaps()
 {
-    KeyMap::SetKeyMapping({Settings::values.pad_a_key,      keyboard_id}, Service::HID::PAD_A);
+    KeyMap::SetKeyMapping({Settings::values.input_mappings[Button::A], keyboard_id }, Service::HID::PAD_A);
     KeyMap::SetKeyMapping({Settings::values.pad_b_key,      keyboard_id}, Service::HID::PAD_B);
     KeyMap::SetKeyMapping({Settings::values.pad_select_key, keyboard_id}, Service::HID::PAD_SELECT);
     KeyMap::SetKeyMapping({Settings::values.pad_start_key,  keyboard_id}, Service::HID::PAD_START);

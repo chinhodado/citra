@@ -155,6 +155,8 @@ const PadState PAD_CIRCLE_LEFT  = {{1u << 29}};
 const PadState PAD_CIRCLE_UP    = {{1u << 30}};
 const PadState PAD_CIRCLE_DOWN  = {{1u << 31}};
 
+extern PadState pad_state_array[23];
+
 /**
  * HID::GetIPCHandles service function
  *  Inputs:

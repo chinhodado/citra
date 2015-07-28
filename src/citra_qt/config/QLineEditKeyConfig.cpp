@@ -7,21 +7,23 @@
 #include "QLineEditKeyConfig.h"
 #include "inputs.h"
 
-std::map<Button, std::string> ButtonNameMap({
-    { Button::A, "A" }, { Button::B, "B" }, { Button::X, "X" }, { Button::Y, "Y" },
-    { Button::L, "L" }, { Button::R, "R" }, { Button::ZL, "ZL" }, { Button::ZR, "ZR" },
-    { Button::DLeft, "D-Left" }, { Button::DRight, "D-Right" }, { Button::DUp, "D-Up" }, { Button::DDown, "D-Down" },
-    { Button::SLeft, "S-Left" }, { Button::SRight, "S-Right" }, { Button::SUp, "S-Up" }, { Button::SDown, "S-Down" },
-    { Button::CLeft, "C-Left" }, { Button::CRight, "C-Right" }, { Button::CUp, "C-Up" }, { Button::CDown, "C-Down" },
-    { Button::Start, "Start" }, { Button::Select, "Select" }, { Button::Home, "Home" } }
+using namespace Settings::NativeInput;
+
+std::map<Values, std::string> ButtonNameMap({
+    { A, "A" }, { B, "B" }, { X, "X" }, { Y, "Y" },
+    { L, "L" }, { R, "R" }, { ZL, "ZL" }, { ZR, "ZR" },
+    { DLEFT, "D-Left" }, { DRIGHT, "D-Right" }, { DUP, "D-Up" }, { DDOWN, "D-Down" },
+    { SLEFT, "S-Left" }, { SRIGHT, "S-Right" }, { SUP, "S-Up" }, { SDOWN, "S-Down" },
+    { CLEFT, "C-Left" }, { CRIGHT, "C-Right" }, { CUP, "C-Up" }, { CDOWN, "C-Down" },
+    { START, "Start" }, { SELECT, "Select" }, { HOME, "Home" } }
 );
 
-QLineEditKeyConfig::QLineEditKeyConfig(Button button, QWidget* parent)
-    : button(button), QLineEdit(parent) {}
+QLineEditKeyConfig::QLineEditKeyConfig(Values button, QWidget* parent)
+    : QLineEdit(parent), button(button) {}
 
 void QLineEditKeyConfig::keyPressEvent(QKeyEvent* event) {
     QString key_name = GInputsDialog::GetKeyName(event->key());
     setText(key_name);
 
-    ValueChanged(button, event->key());
+    emit ValueChanged(button, event->key());
 }

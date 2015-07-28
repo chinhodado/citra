@@ -6,13 +6,11 @@
 #include <QString>
 #include <QStringList>
 
-#include "core/settings.h"
 #include "common/file_util.h"
 
 #include "config.h"
 
 Config::Config() {
-
     // TODO: Don't hardcode the path; let the frontend decide where to put the config files.
     qt_config_loc = FileUtil::GetUserPath(D_CONFIG_IDX) + "qt-config.ini";
     FileUtil::CreateFullPath(qt_config_loc);
@@ -21,7 +19,7 @@ Config::Config() {
     Reload();
 }
 
-static const std::array<QVariant, Settings::NativeInput::NUM_INPUTS> defaults = {
+const std::array<QVariant, Settings::NativeInput::NUM_INPUTS> Config::defaults = {
     Qt::Key_A, Qt::Key_S, Qt::Key_Z, Qt::Key_X,
     Qt::Key_Q, Qt::Key_W, Qt::Key_1, Qt::Key_2,
     Qt::Key_M, Qt::Key_N, Qt::Key_B,

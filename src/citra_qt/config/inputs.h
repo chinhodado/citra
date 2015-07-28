@@ -9,7 +9,8 @@
 #include <QDialog>
 
 #include "../core/settings.h"
-#include "QLineEditKeyConfig.h"
+
+class QLineEditKeyConfig;
 
 /// The input configuration dialog
 class GInputsDialog : public QDialog {
@@ -22,31 +23,7 @@ public:
     static QString GetKeyName(int key_code);
 
 private:
-    QLineEditKeyConfig *lineEdit_A;
-    QLineEditKeyConfig *lineEdit_B;
-    QLineEditKeyConfig *lineEdit_X;
-    QLineEditKeyConfig *lineEdit_Y;
-    QLineEditKeyConfig *lineEdit_L;
-    QLineEditKeyConfig *lineEdit_R;
-    QLineEditKeyConfig *lineEdit_ZL;
-    QLineEditKeyConfig *lineEdit_ZR;
-    QLineEditKeyConfig *lineEdit_dUp;
-    QLineEditKeyConfig *lineEdit_dDown;
-    QLineEditKeyConfig *lineEdit_dLeft;
-    QLineEditKeyConfig *lineEdit_dRight;
-    QLineEditKeyConfig *lineEdit_sUp;
-    QLineEditKeyConfig *lineEdit_sDown;
-    QLineEditKeyConfig *lineEdit_sLeft;
-    QLineEditKeyConfig *lineEdit_sRight;
-    QLineEditKeyConfig *lineEdit_cUp;
-    QLineEditKeyConfig *lineEdit_cDown;
-    QLineEditKeyConfig *lineEdit_cLeft;
-    QLineEditKeyConfig *lineEdit_cRight;
-    QLineEditKeyConfig *lineEdit_Start;
-    QLineEditKeyConfig *lineEdit_Select;
-    QLineEditKeyConfig *lineEdit_Home;
-
-    /// An array of all the lineEdits above for easy iterating though them
+    /// An array of all the lineEdits for easy iterating though them
     std::array<QLineEditKeyConfig*, 23> lineEdits;
 
     /// Display the button settings on the LineEdits from the given values
@@ -58,5 +35,5 @@ private:
 private slots:
     void SaveSettings();
     void RestoreDefaultSettings();
-    void UpdateValue(Button button, int key);
+    void UpdateValue(Settings::NativeInput::Values button, int key);
 };

@@ -43,10 +43,10 @@ bool Config::LoadINI(INIReader* config, const char* location, const std::string&
 static const std::array<int, Settings::NativeInput::NUM_INPUTS> defaults = {
     GLFW_KEY_A, GLFW_KEY_S, GLFW_KEY_Z, GLFW_KEY_X,
     GLFW_KEY_Q, GLFW_KEY_W, GLFW_KEY_1, GLFW_KEY_2,
-    GLFW_KEY_M, GLFW_KEY_N, GLFW_KEY_B,
     GLFW_KEY_T, GLFW_KEY_G, GLFW_KEY_F, GLFW_KEY_H,
     GLFW_KEY_UP, GLFW_KEY_DOWN, GLFW_KEY_LEFT, GLFW_KEY_RIGHT,
-    GLFW_KEY_I, GLFW_KEY_K, GLFW_KEY_J, GLFW_KEY_L
+    GLFW_KEY_I, GLFW_KEY_K, GLFW_KEY_J, GLFW_KEY_L,
+    GLFW_KEY_M, GLFW_KEY_N, GLFW_KEY_B
 };
 
 void Config::ReadValues() {

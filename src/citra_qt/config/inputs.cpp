@@ -24,6 +24,15 @@ GInputsDialog::GInputsDialog(QWidget* parent) : QDialog(parent) {
         lineEdits[i]->setFocusPolicy(Qt::ClickFocus);
     }
 
+    std::string labelArray[] = {
+        "A:", "B:", "X:", "Y:",
+        "L:", "R:", "ZL:", "ZR:",
+        "D-Left:", "D-Right:", "D-Up:", "D-Down:",
+        "S-Left:", "S-Right:", "S-Up:", "S-Down:",
+        "C-Left:", "C-Right:", "C-Up:", "C-Down:",
+        "Start:", "Select:", "Home:"
+    };
+
     // put the lineEdits and their labels into a grid
     QGridLayout* grid = new QGridLayout();
     size_t size = lineEdits.size();
@@ -32,7 +41,7 @@ GInputsDialog::GInputsDialog(QWidget* parent) : QDialog(parent) {
         int row = i % NUM_ROW;
         int labelColumn = (int)i / NUM_ROW * 2;
         QLineEditKeyConfig* lineEdit = lineEdits[i];
-        QLabel* label = new QLabel(tr(ButtonNameMap[lineEdit->button].c_str()));
+        QLabel* label = new QLabel(tr(labelArray[lineEdit->button].c_str()));
         grid->addWidget(label, row, labelColumn);
         grid->addWidget(lineEdit, row, labelColumn + 1);
 

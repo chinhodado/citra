@@ -11,9 +11,6 @@
 
 class QKeyEvent;
 
-/// Map a button to its name
-extern std::map<Settings::NativeInput::Values, std::string> ButtonNameMap;
-
 /// The LineEdits used for button configuration
 class QLineEditKeyConfig : public QLineEdit {
     Q_OBJECT

@@ -9,15 +9,6 @@
 
 using namespace Settings::NativeInput;
 
-std::map<Values, std::string> ButtonNameMap({
-    { A, "A" }, { B, "B" }, { X, "X" }, { Y, "Y" },
-    { L, "L" }, { R, "R" }, { ZL, "ZL" }, { ZR, "ZR" },
-    { DLEFT, "D-Left" }, { DRIGHT, "D-Right" }, { DUP, "D-Up" }, { DDOWN, "D-Down" },
-    { SLEFT, "S-Left" }, { SRIGHT, "S-Right" }, { SUP, "S-Up" }, { SDOWN, "S-Down" },
-    { CLEFT, "C-Left" }, { CRIGHT, "C-Right" }, { CUP, "C-Up" }, { CDOWN, "C-Down" },
-    { START, "Start" }, { SELECT, "Select" }, { HOME, "Home" } }
-);
-
 QLineEditKeyConfig::QLineEditKeyConfig(Values button, QWidget* parent)
     : QLineEdit(parent), button(button) {}
 

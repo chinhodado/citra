@@ -21,6 +21,7 @@ GInputsDialog::GInputsDialog(QWidget* parent) : QDialog(parent) {
     // create the lineEdits
     for (int i = 0; i < Settings::NativeInput::NUM_INPUTS; ++i) {
         lineEdits[i] = new QLineEditKeyConfig(Settings::NativeInput::All[i]);
+        lineEdits[i]->setFocusPolicy(Qt::ClickFocus);
     }
 
     // put the lineEdits and their labels into a grid

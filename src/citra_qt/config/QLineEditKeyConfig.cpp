@@ -27,3 +27,7 @@ void QLineEditKeyConfig::keyPressEvent(QKeyEvent* event) {
 
     emit ValueChanged(button, event->key());
 }
+
+bool QLineEditKeyConfig::focusNextPrevChild(bool next) {
+    return false;
+}

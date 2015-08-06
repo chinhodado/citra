@@ -22,7 +22,7 @@ public:
     Settings::NativeInput::Values button;
     QLineEditKeyConfig(Settings::NativeInput::Values button, QWidget* parent = nullptr);
     void keyPressEvent(QKeyEvent* event) override;
-
+    bool focusNextPrevChild(bool next) override;
 signals:
     void ValueChanged(Settings::NativeInput::Values, int);
 };
